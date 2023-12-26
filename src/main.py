@@ -3,17 +3,21 @@ from gameSate import GameState
 print("Welcome to TTT.")
 
 def getAiLevel() -> int:
-    user_choice = input("Select AI level (b)eginer (e)xpert: (b)")
+    user_choice = input("Select AI level (b)eginer, (a)dvanced, (e)xpert: (b)")
     if user_choice == "":
         return 0
     
-    while user_choice == "" or user_choice not in "beBE":
-        user_choice = input("Select AI level (b)eginer (e)xpert: (b)")
-        if user_choice.lower() == "b":
-            return 0
+    while user_choice not in "baeBAE":
+        user_choice = input("Select AI level (b)eginer, (a)dvanced, (e)xpert: (b)")
 
-        if user_choice.lower() == "e":
-            return 1
+    if user_choice.lower() == "b":
+        return 0
+
+    if user_choice.lower() == "a":
+        return 1
+
+    if user_choice.lower() == "e":
+        return 2
 
 
 def getNumberOfPlayers() -> int:

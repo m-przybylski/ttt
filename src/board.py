@@ -1,3 +1,5 @@
+import copy
+
 class Board():
     def __init__(self, size: int) -> None:
         self._size = size
@@ -50,3 +52,6 @@ class Board():
         col = (place - 1) % self._size
         row = (place - 1) // self._size
         self._board[row][col] = mark
+
+    def copy(self):
+        return copy.deepcopy(self)

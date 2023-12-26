@@ -5,7 +5,11 @@ class GameState():
     def __init__(self, board_size = 3, player_count = 2, ai_level = 0) -> None:
         assert 0 <= player_count <= 2
         self._board = Board(board_size)
-        self._players = [HumanPlayer(mark) for mark in "XO"[:player_count]] + [AIPlayer(mark, ai_level) for mark in "XO"[player_count:]]
+        self._players = [
+            HumanPlayer("X", "O") if player_count >= 1 else AIPlayer("X", "O", ai_level),
+            HumanPlayer("O", "X") if player_count == 2 else AIPlayer("O", "X", ai_level)
+        ]
+
         self.current_player = self._players[0]
 
     def canContinue(self):
@@ -13,7 +17,7 @@ class GameState():
     
     def move(self):
         self._board.printBoard()
-        move = self.current_player.makeMove(self._board.getAvailableSpaces())
+        move = self.current_player.makeMove(self._board)
         self._board.playerMove(self.current_player.mark, move)
         self._nextPlayer()
 
