@@ -12,7 +12,7 @@ class GameState():
         return not len(self._board.getAvailableSpaces()) == 0 and not self._board.hasWinner()
     
     def move(self):
-        move = self.current_player.makeMove()
+        move = self.current_player.makeMove(self._board.getAvailableSpaces())
         self._board.playerMove(self.current_player.mark, move)
         self._nextPlayer()
 

@@ -34,7 +34,7 @@ class Board():
     def printBoard(self) -> None:
         print("Board:")
         for i, row in enumerate(self._board):
-            print("|".join([f" {col} " for col in row]))
+            print("|".join([f" {(self._size * i) + j + 1 if col == ' ' else col} " for j, col in enumerate(row)]))
             print("|".join(["---" for _ in row if i != len(self._board) - 1]))
 
     def getAvailableSpaces(self) -> list[int]:

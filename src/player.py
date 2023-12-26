@@ -1,3 +1,6 @@
+import random
+import time
+
 class Player():
     def __init__(self, mark: str) -> None:
         self.mark = mark
@@ -7,7 +10,7 @@ class HumanPlayer(Player):
         super().__init__(mark)
         self._isAI = False
 
-    def makeMove(self):
+    def makeMove(self, available_spaces):
         user_move = input("select field:")
         while True:
             try:
@@ -20,6 +23,6 @@ class AIPlayer(Player):
         super().__init__(mark)
         self._isAI = True
 
-    def makeMove(self):
-        user_move = input("select field:")
-        print(user_move)
+    def makeMove(self, available_spaces):
+        random.seed(time.time())
+        return available_spaces[random.randrange(0, len(available_spaces) -1, 1)]
