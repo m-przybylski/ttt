@@ -7,3 +7,4 @@ game.printState()
 while game.canContinue():
     game.move()
     game.printState()
+    game.printWinner()

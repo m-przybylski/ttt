@@ -9,13 +9,19 @@ class GameState():
         self.current_player = self._players[0]
 
     def canContinue(self):
-        return len(self._board.getAvailableSpaces()) > 0 or not self._board.hasWinner()
+        return not len(self._board.getAvailableSpaces()) == 0 and not self._board.hasWinner()
     
     def move(self):
         move = self.current_player.makeMove()
         self._board.playerMove(self.current_player.mark, move)
         self._nextPlayer()
 
+    def printWinner(self):
+        winner = self._board.getWinner()
+        if len(self._board.getAvailableSpaces()) == 0:
+            print("Tie")
+        elif winner != None:
+            print(f"{winner} wins!")
 
     def _nextPlayer(self):
         playerIndex = self._players.index(self.current_player) - 1
