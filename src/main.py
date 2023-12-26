@@ -1,5 +1,9 @@
-from board import Board
+from gameSate import GameState
 
-b = Board(3)
+game = GameState()
 
-b.printBoard()
+game.printState()
+
+while game.canContinue():
+    game.move()
+    game.printState()
